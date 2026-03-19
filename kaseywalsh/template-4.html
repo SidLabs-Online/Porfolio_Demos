@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kasey Walsh — The Storyteller</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --wine:    #7b2d42;
+      --wine-d:  #4a1428;
+      --blush:   #f5e6c8;
+      --cream:   #fdf6ed;
+      --ink:     #2a1a1f;
+      --mid:     #8a6070;
+      --line:    rgba(123,45,66,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV / HEADER ────────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-top {
+      padding: 0.6rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--wine);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .header-back:hover { opacity: 0.6; }
+    .header-back svg { width: 12px; height: 12px; }
+
+    .header-date {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--mid);
+      letter-spacing: 0.08em;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 2rem;
+    }
+    .header-nav a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .header-nav a:hover { color: var(--wine); }
+
+    .header-main {
+      padding: 1rem 4rem;
+      text-align: center;
+    }
+
+    .header-logo {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: var(--ink);
+    }
+
+    .header-tagline {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: 0.1rem;
+    }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      padding-top: 130px;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 520px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 4rem;
+      padding-right: 4rem;
+      padding-bottom: 4rem;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-left {}
+
+    .hero-category {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--wine);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .hero-category::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--wine);
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 500;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-top: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--wine);
+    }
+
+    .hero-deck {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--mid);
+      max-width: 480px;
+      margin-top: 1.5rem;
+    }
+
+    .hero-byline {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .byline-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .byline-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .byline-text {}
+    .byline-name {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .byline-role {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--mid);
+      margin-top: 0.1rem;
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-right img {
+      width: 100%;
+      border-radius: 2px;
+      display: block;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+    }
+
+    .hero-caption {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: var(--mid);
+      margin-top: 0.6rem;
+      font-style: italic;
+    }
+
+    /* ── PULLQUOTE BAND ──────────────────────────────────── */
+    .pullquote-band {
+      background: var(--wine-d);
+      padding: 4rem 5rem;
+      text-align: center;
+    }
+
+    .pullquote {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--blush);
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .pullquote-attr {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,230,200,0.45);
+      margin-top: 1.5rem;
+    }
+
+    /* ── STORY / ABOUT ───────────────────────────────────── */
+    .story {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .story-main {}
+
+    .story-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--wine);
+    }
+
+    .story-main h2 {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-top: 0.6rem;
+    }
+
+    .story-body {
+      margin-top: 1.5rem;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--mid);
+      font-weight: 400;
+    }
+    .story-body p + p { margin-top: 1.1rem; }
+    .story-body strong { color: var(--ink); font-weight: 600; }
+
+    /* Drop cap */
+    .story-body p:first-of-type::first-letter {
+      font-size: 4rem;
+      font-weight: 700;
+      float: left;
+      line-height: 0.75;
+      margin-right: 0.1em;
+      margin-top: 0.12em;
+      color: var(--wine);
+    }
+
+    .story-sidebar {
+      position: sticky;
+      top: 145px;
+    }
+
+    .sidebar-box {
+      padding: 1.5rem;
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--wine);
+      background: var(--cream);
+      border-radius: 0 0 2px 2px;
+    }
+
+    .sidebar-box-title {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--wine);
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-item {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--ink);
+    }
+    .sidebar-item:last-child { border-bottom: none; }
+
+    .sidebar-item-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    /* ── WRITING ─────────────────────────────────────────── */
+    .writing {
+      padding: 5rem 4rem;
+      background: var(--blush);
+      border-top: 1px solid var(--line);
+    }
+
+    .writing-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+    }
+
+    .writing-header .label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--wine);
+      display: block;
+    }
+
+    .writing-header h2 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-top: 0.4rem;
+    }
+
+    .writing-header a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--wine);
+      text-decoration: none;
+      border-bottom: 1px solid var(--wine);
+      padding-bottom: 2px;
+    }
+
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .article-card {
+      background: var(--cream);
+      padding: 2rem;
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s;
+    }
+    .article-card:hover { transform: translateY(-3px); }
+
+    .article-pub {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--wine);
+    }
+
+    .article-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 1.35;
+      color: var(--ink);
+      margin-top: 0.7rem;
+    }
+
+    .article-excerpt {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--mid);
+      margin-top: 0.7rem;
+      flex: 1;
+    }
+
+    .article-link {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--wine);
+      text-decoration: none;
+      margin-top: 1.2rem;
+      display: inline-block;
+    }
+
+    /* ── CONTACT ─────────────────────────────────────────── */
+    .contact {
+      padding: 6rem 4rem;
+      background: var(--wine-d);
+      text-align: center;
+    }
+
+    .contact .issue-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(245,230,200,0.5);
+    }
+
+    .contact h2 {
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--blush);
+      margin-top: 0.8rem;
+      line-height: 1.2;
+    }
+
+    .contact p {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(245,230,200,0.55);
+      max-width: 420px;
+      margin: 1.2rem auto 0;
+      line-height: 1.8;
+    }
+
+    .contact-email {
+      display: inline-block;
+      margin-top: 2.5rem;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--blush);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(245,230,200,0.3);
+      padding-bottom: 4px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-email:hover { border-color: var(--blush); }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      padding: 2rem 4rem;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      font-size: 0.8rem;
+      color: rgba(245,230,200,0.35);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245,230,200,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--blush); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      header { position: static; }
+      .header-top, .header-main { padding: 0.8rem 1.5rem; }
+      .hero { padding: 2rem 1.5rem; grid-template-columns: 1fr; min-height: auto; gap: 2rem; }
+      .story { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+      .story-sidebar { position: static; }
+      .writing { padding: 3rem 1.5rem; }
+      .writing-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .contact, footer { padding: 4rem 1.5rem 3rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .header-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <a href="index.html" class="header-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      All Templates
+    </a>
+    <span class="header-date">kaseywalsh.com · Greater Boston</span>
+    <nav class="header-nav">
+      <a href="#story">About</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+  <div class="header-main">
+    <h1 class="header-logo">KASEY WALSH</h1>
+    <p class="header-tagline">Advocate · Founder · Storyteller · Mom</p>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-category">Personal Essay</p>
+    <h2 class="hero-title">
+      "I've been brave.<br>Broken. Hopeful.<br><em>Hell-bent.</em>"
+    </h2>
+    <p class="hero-deck">
+      Your story — from a rare diagnosis to founding a health tech company — told the only way you know how: honestly, urgently, and with unflinching love.
+    </p>
+    <div class="hero-byline">
+      <div class="byline-avatar">
+        <img src="https://picsum.photos/seed/kaseyface/100/100" alt="Kasey Walsh" />
+      </div>
+      <div class="byline-text">
+        <p class="byline-name">Kasey Walsh</p>
+        <p class="byline-role">Founder, Winsights.life · Co-Founder, Cure AP-4</p>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://picsum.photos/seed/storytellerkasey/520/650" alt="Kasey Walsh" />
+    <p class="hero-caption">Kasey Walsh — Greater Boston, Massachusetts</p>
+  </div>
+</section>
+
+<!-- PULLQUOTE BAND -->
+<div class="pullquote-band">
+  <blockquote class="pullquote">
+    "I have been so many things over this past decade. A mama. A wife. A daughter. A friend. I've been laser-focused on a personal-turned-professional mission to learn, and do, as much as humanly possible."
+  </blockquote>
+  <p class="pullquote-attr">— Kasey Walsh · LinkedIn, 2025</p>
+</div>
+
+<!-- STORY / ABOUT -->
+<section class="story" id="story">
+  <div class="story-main">
+    <p class="story-label">Your Story</p>
+    <h2>The Woman Behind<br>the Mission</h2>
+    <div class="story-body">
+      <p>When your daughter Robbie was diagnosed with AP-4-HSP — a rare, neurodegenerative disorder so uncommon that less than 250 families worldwide carry the diagnosis — you entered the most terrifying and clarifying chapter of your life.</p>
+      <p>There was no treatment. Barely any research. A handful of families scattered across the globe, each carrying the same impossible weight in total isolation. So you did what communicators do: you built a bridge.</p>
+      <p>In 2016, you co-founded <strong>Cure AP-4, Inc.</strong> — a grassroots nonprofit that grew from a pledge between two families into a globally recognized research initiative, funding multiple therapeutic approaches and connecting 230+ families across four disease subtypes. For nine years, you served as the bridge between labs and living rooms — translating research from Sheffield and Cambridge into plain language for exhausted parents across four continents.</p>
+      <p>Your work contributed to <strong>biomarker discoveries</strong>, the expansion of disease recognition in misdiagnosed patients, and a groundbreaking drug discovery collaboration with Unravel Biosciences that predicted three FDA-approved medications for potential off-label AP-4-HSP use.</p>
+      <p>Today, as Founder & CEO of <strong>Winsights.life</strong>, you're building the platform you always wished existed: a place where the data caregivers generate every single day — the symptoms tracked, the patterns noticed, the observations logged — becomes research-grade evidence that scientists can actually use. Because the story doesn't end with a diagnosis. It's just beginning.</p>
+    </div>
+  </div>
+  <div class="story-sidebar">
+    <div class="sidebar-box">
+      <p class="sidebar-box-title">At a Glance</p>
+      <div class="sidebar-item">
+        <span class="sidebar-item-label">Role</span>
+        Founder &amp; CEO, Winsights.life
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-item-label">Former</span>
+        Co-Founder, Cure AP-4 (2016–2025)
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-item-label">Location</span>
+        Greater Boston, Massachusetts
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-item-label">Education</span>
+        BA, Communication &amp; Media Studies · Assumption University
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-item-label">Award</span>
+        Lindamae Lucas Award · Commonwealth of Massachusetts, 2024
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-item-label">Collaborations</span>
+        Boston Children's Hospital · The Broad · Sheffield · Cambridge
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section class="writing" id="writing">
+  <div class="writing-header">
+    <div>
+      <span class="label">Published Work &amp; Media</span>
+      <h2>Kasey in Print &amp; Podcast</h2>
+    </div>
+    <a href="#contact">All Press →</a>
+  </div>
+  <div class="articles">
+    <div class="article-card">
+      <p class="article-pub">Healthcare Business Today</p>
+      <h3 class="article-title">Rare Disease Data Deserves Better Infrastructure</h3>
+      <p class="article-excerpt">On why building a better data infrastructure for rare disease means starting with community — and the people who live with the impact of these conditions every day.</p>
+      <a href="#contact" class="article-link">Read More →</a>
+    </div>
+    <div class="article-card">
+      <p class="article-pub">Take The Lead Women</p>
+      <h3 class="article-title">Rare Disease Awareness Is Not Seasonal</h3>
+      <p class="article-excerpt">"That gap between awareness and action is why I am building Winsights.life." On advocacy, urgency, and the work that never stops just because February ends.</p>
+      <a href="#contact" class="article-link">Read More →</a>
+    </div>
+    <div class="article-card">
+      <p class="article-pub">EEAE Podcast · Episode 38</p>
+      <h3 class="article-title">From Diagnosis to Advocacy: Kasey's Fight for SPG47 Research</h3>
+      <p class="article-excerpt">"Entrepreneurs, Executives & Eccentrics" — an interview exploring Kasey's decade-long journey from her daughter's diagnosis to building a health tech venture.</p>
+      <a href="#contact" class="article-link">Listen →</a>
+    </div>
+    <div class="article-card">
+      <p class="article-pub">LinkedIn · Featured</p>
+      <h3 class="article-title">"I have been so many things over this past decade."</h3>
+      <p class="article-excerpt">A deeply personal reflection on what it means to hold joy and devastation, bravery and brokenness — and to keep going anyway.</p>
+      <a href="https://linkedin.com/in/kasey-edwards-7899b63" class="article-link" target="_blank">View Post →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="issue-label">Correspondence</p>
+  <h2>Every great story<br>starts with a conversation.</h2>
+  <p>Media inquiries, collaboration opportunities, speaking requests, or simply reaching out — your story is still being written, and you'd love to hear theirs.</p>
+  <a href="mailto:hello@kaseywalsh.com" class="contact-email">hello@kaseywalsh.com</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">Kasey Walsh · kaseywalsh.com</span>
+  <div class="footer-links">
+    <a href="https://winsights.life" target="_blank">Winsights.life</a>
+    <a href="https://linkedin.com/in/kasey-edwards-7899b63" target="_blank">LinkedIn</a>
+    <a href="index.html">← All Templates</a>
+  </div>
+</footer>
+
+</body>
+</html>

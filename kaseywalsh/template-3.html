@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kasey Walsh — The Advocate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1e2d5a;
+      --navy-d: #0d1a3a;
+      --sky:    #5b8db8;
+      --sky-l:  #8bb3d4;
+      --white:  #f7f9ff;
+      --off:    #eef1f8;
+      --ink:    #1a2240;
+      --muted:  #6b7a9e;
+      --line:   rgba(30,45,90,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--navy-d);
+      padding: 0 4rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sky-l);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .nav-back:hover { opacity: 0.65; }
+    .nav-back svg { width: 14px; height: 14px; }
+
+    .nav-logo {
+      font-family: 'Merriweather', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    .nav-links .nav-cta {
+      padding: 0.5rem 1.2rem;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      border-radius: 2px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      transition: background 0.2s;
+    }
+    .nav-links .nav-cta:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      padding-top: 68px;
+      min-height: 100vh;
+      background: var(--navy-d);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to top, var(--white) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      background: url('https://picsum.photos/seed/advocateboston/1400/900') center/cover no-repeat;
+      opacity: 0.12;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 3;
+      max-width: 900px;
+      padding: 5rem 5rem 8rem;
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.4rem 1rem;
+      background: rgba(91,141,184,0.2);
+      border: 1px solid rgba(91,141,184,0.3);
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sky-l);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-chip::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sky-l);
+    }
+
+    .hero-title {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #fff;
+    }
+
+    .hero-title .underline-gold {
+      position: relative;
+      display: inline-block;
+      color: var(--sky-l);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.6);
+      max-width: 600px;
+      margin-top: 2rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 0;
+      margin-top: 3.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      max-width: 600px;
+    }
+
+    .hero-stat {
+      flex: 1;
+      padding: 1.5rem 1.8rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+    }
+    .hero-stat:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Merriweather', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--sky-l);
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.25rem;
+      line-height: 1.4;
+    }
+
+    /* ── RESEARCH RECORD ─────────────────────────────────── */
+    .record {
+      padding: 6rem 5rem;
+      background: var(--white);
+    }
+
+    .record-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: end;
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .record-header .label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sky);
+      display: block;
+    }
+    .record-header h2 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .record-header p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--muted);
+      align-self: end;
+    }
+
+    .record-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .record-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      background: var(--white);
+      transition: background 0.25s;
+    }
+    .record-item:hover { background: var(--off); }
+
+    .record-year {
+      padding: 2rem 1.5rem;
+      font-family: 'Merriweather', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--sky);
+      border-right: 1px solid var(--line);
+      display: flex;
+      align-items: flex-start;
+      padding-top: 2.2rem;
+    }
+
+    .record-body {
+      padding: 1.8rem 2rem;
+    }
+
+    .record-body h3 {
+      font-family: 'Merriweather', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .record-body p {
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    .record-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      background: rgba(91,141,184,0.1);
+      color: var(--sky);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    /* ── PROFILE ─────────────────────────────────────────── */
+    .profile {
+      padding: 6rem 5rem;
+      background: var(--off);
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .profile-img-wrap {
+      position: sticky;
+      top: 90px;
+    }
+
+    .profile-img-wrap img {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      border: 4px solid var(--white);
+      box-shadow: 0 20px 60px rgba(13,26,58,0.15);
+    }
+
+    .profile-credential {
+      margin-top: 1.2rem;
+      padding: 1.2rem;
+      background: var(--navy-d);
+      border-radius: 4px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.82rem;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .profile-credential strong { color: var(--sky-l); font-weight: 600; }
+
+    .profile-content .label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sky);
+    }
+
+    .profile-content h2 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.8rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .profile-content .body {
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-top: 1.5rem;
+    }
+    .profile-content .body p + p { margin-top: 1rem; }
+    .profile-content .body strong { color: var(--ink); font-weight: 600; }
+
+    .award-box {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--sky);
+      border-radius: 0 4px 4px 0;
+    }
+    .award-box .award-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sky);
+    }
+    .award-box h4 {
+      font-family: 'Merriweather', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 0.4rem;
+    }
+    .award-box p {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      line-height: 1.6;
+    }
+
+    /* ── CONTACT ─────────────────────────────────────────── */
+    .contact {
+      padding: 6rem 5rem;
+      background: var(--navy);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .contact-left .label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sky-l);
+    }
+
+    .contact-left h2 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+      margin-top: 0.8rem;
+      line-height: 1.2;
+    }
+
+    .contact-left p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.8;
+      margin-top: 1rem;
+    }
+
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.85rem;
+    }
+    .contact-row:last-child { border-bottom: none; }
+    .contact-key { color: rgba(255,255,255,0.35); font-weight: 600; letter-spacing: 0.05em; }
+    .contact-val { color: rgba(255,255,255,0.75); font-weight: 300; }
+    .contact-val a { color: var(--sky-l); text-decoration: none; }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      padding: 1.8rem 5rem;
+      background: var(--navy-d);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      font-family: 'Merriweather', serif;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--sky-l); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .hero-inner { padding: 4rem 1.5rem 7rem; }
+      .hero-stats { flex-direction: column; max-width: 100%; }
+      .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .record, .profile, .contact { padding: 3.5rem 1.5rem; }
+      .record-header { grid-template-columns: 1fr; gap: 1rem; }
+      .record-item { grid-template-columns: 80px 1fr; }
+      .profile { grid-template-columns: 1fr; }
+      .profile-img-wrap { position: static; }
+      .contact { grid-template-columns: 1fr; gap: 2.5rem; }
+      footer { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Gallery
+  </a>
+  <span class="nav-logo">Kasey Walsh</span>
+  <div class="nav-links">
+    <a href="#record">Research</a>
+    <a href="#profile">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-cta">Collaborate</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-inner">
+    <div class="hero-chip">Rare Disease Advocate · Greater Boston</div>
+    <h1 class="hero-title">
+      Parent-Driven Researcher.<br>
+      <span class="underline-gold">Relentless</span><br>
+      Advocate.
+    </h1>
+    <p class="hero-desc">
+      For nine years, you've worked shoulder-to-shoulder with researchers at Boston Children's Hospital, The Broad Institute, Sheffield University, and Cambridge — not as a scientist by credential, but as the most motivated person in the room.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="stat-num">9+</div>
+        <div class="stat-label">Years Research Collaboration</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Research Institutions</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">2024</div>
+        <div class="stat-label">Commonwealth Award</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH RECORD -->
+<section class="record" id="record">
+  <div class="record-header">
+    <div>
+      <span class="label">Research Record</span>
+      <h2>Nine Years of<br>Scientific Contribution</h2>
+    </div>
+    <p>Your work spans biomarker discovery, patient population expansion, drug repurposing research, and the translation of complex science into plain language for families across four continents.</p>
+  </div>
+  <div class="record-list">
+    <div class="record-item">
+      <div class="record-year">2016</div>
+      <div class="record-body">
+        <h3>Co-Founded Cure AP-4, Inc.</h3>
+        <p>Launched grassroots nonprofit with a founding family to accelerate research for AP-4-HSP — a group of ultra-rare neurodegenerative disorders affecting fewer than 250 families globally.</p>
+        <div class="record-tags"><span class="tag">Nonprofit</span><span class="tag">AP-4-HSP</span><span class="tag">Boston</span></div>
+      </div>
+    </div>
+    <div class="record-item">
+      <div class="record-year">2017–20</div>
+      <div class="record-body">
+        <h3>Biomarker Discovery Support</h3>
+        <p>Contributed to biomarker discovery efforts at Boston Children's Hospital and helped expand recognition of hereditary spastic paraplegia as a misclassified patient population within cerebral palsy diagnoses.</p>
+        <div class="record-tags"><span class="tag">Biomarkers</span><span class="tag">BCH</span><span class="tag">Misclassification</span></div>
+      </div>
+    </div>
+    <div class="record-item">
+      <div class="record-year">2021–22</div>
+      <div class="record-body">
+        <h3>Unravel Biosciences Drug Discovery Collaboration</h3>
+        <p>Identified a therapeutic research opportunity leading to a collaboration between Cure AP-4 and Unravel Biosciences, where computational drug discovery predicted three FDA-approved medications for potential AP-4-HSP off-label use. Compounds demonstrated efficacy in disease-model tadpoles.</p>
+        <div class="record-tags"><span class="tag">Drug Discovery</span><span class="tag">FDA</span><span class="tag">Unravel Bio</span><span class="tag">Observational Study</span></div>
+      </div>
+    </div>
+    <div class="record-item">
+      <div class="record-year">2023</div>
+      <div class="record-body">
+        <h3>Pleozyme Partnership — Mitochondrial Research</h3>
+        <p>Partnered with Pleozyme, Inc. to explore how an emerging therapeutic targeting mitochondrial function and cellular stress in rare neurogenetic disorders might intervene for AP-4-HSP.</p>
+        <div class="record-tags"><span class="tag">Mitochondria</span><span class="tag">Pleozyme</span><span class="tag">Neurogenetic</span></div>
+      </div>
+    </div>
+    <div class="record-item">
+      <div class="record-year">2024</div>
+      <div class="record-body">
+        <h3>Lindamae Lucas Award for Excellence — Commonwealth of Massachusetts</h3>
+        <p>Honored for embodying compassion, resilience, advocacy, and humor in special needs parenting. Recognition connected to co-founding Newburyport's first inclusive playground for children of all abilities.</p>
+        <div class="record-tags"><span class="tag">Award</span><span class="tag">Massachusetts</span><span class="tag">Community</span></div>
+      </div>
+    </div>
+    <div class="record-item">
+      <div class="record-year">2025</div>
+      <div class="record-body">
+        <h3>Founded Winsights.life — Venture Philanthropy</h3>
+        <p>Launched AI &amp; ML-powered health tech venture philanthropy to transform patient and caregiver lived experience into regulatory-grade real-world evidence, bridging patients, clinicians, researchers, and academic institutions.</p>
+        <div class="record-tags"><span class="tag">HealthTech</span><span class="tag">AI/ML</span><span class="tag">Real-World Evidence</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section class="profile" id="profile">
+  <div class="profile-img-wrap">
+    <img src="https://picsum.photos/seed/kaseyresearch/400/500" alt="Kasey Walsh" />
+    <div class="profile-credential">
+      <strong>Kasey Walsh</strong><br>
+      Parent-driven researcher · Non-profit co-founder · Life science research investor · Entrepreneur · Mom
+    </div>
+  </div>
+  <div class="profile-content">
+    <p class="label">The Person Behind the Research</p>
+    <h2>A Communicator Who Became a Catalyst</h2>
+    <div class="body">
+      <p>You studied Communication and Media Studies at Assumption University. You began your career coordinating healthcare services for patients with neuromuscular diseases at the Muscular Dystrophy Association — sitting at the bedside of patients at Boston Children's Hospital, Mass General, and Lahey Clinic.</p>
+      <p>When your daughter Robbie was diagnosed with <strong>AP-4-HSP (SPG47)</strong>, you combined every skill you had — communication, relationship-building, community organizing — and pointed them at a disease that had no treatment and almost no research funding.</p>
+      <p>You didn't publish papers. You built the ecosystem that makes papers possible. You served as a critical liaison between scientific teams and patient families, translating research findings into plain language across dozens of languages, and organized annual research summits for the Cure AP-4 community.</p>
+      <p>Today your work continues through <strong>Winsights.life</strong> — building the infrastructure for patient-generated data to finally enter the research pipeline where it can do the most good.</p>
+    </div>
+    <div class="award-box">
+      <p class="award-label">2024 Honor</p>
+      <h4>Lindamae Lucas Award for Excellence</h4>
+      <p>Issued by the Commonwealth of Massachusetts · Associated with compassion, resilience, advocacy, and special needs parenting.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-left">
+    <p class="label">Collaborate</p>
+    <h2>Let's Advance<br>the Science Together</h2>
+    <p>You partner with researchers, clinicians, patient organizations, and health tech companies who are committed to building a better evidence ecosystem for rare disease.</p>
+    <a href="mailto:hello@kaseywalsh.com" style="display:inline-block;margin-top:1.8rem;padding:0.85rem 2rem;background:var(--sky);color:#fff;font-size:0.82rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;">hello@kaseywalsh.com</a>
+  </div>
+  <div class="contact-right">
+    <div class="contact-row">
+      <span class="contact-key">Email</span>
+      <span class="contact-val"><a href="mailto:hello@kaseywalsh.com">hello@kaseywalsh.com</a></span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-key">Location</span>
+      <span class="contact-val">Greater Boston, Massachusetts</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-key">Winsights</span>
+      <span class="contact-val"><a href="https://winsights.life" target="_blank">winsights.life</a></span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-key">LinkedIn</span>
+      <span class="contact-val"><a href="https://linkedin.com/in/kasey-edwards-7899b63" target="_blank">Kasey Walsh Edwards</a></span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-key">Press</span>
+      <span class="contact-val">Available for speaking, interviews & collaboration</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">Kasey Walsh · kaseywalsh.com</span>
+  <div class="footer-links">
+    <a href="https://winsights.life" target="_blank">Winsights.life</a>
+    <a href="https://linkedin.com/in/kasey-edwards-7899b63" target="_blank">LinkedIn</a>
+    <a href="index.html">← All Templates</a>
+  </div>
+</footer>
+
+</body>
+</html>

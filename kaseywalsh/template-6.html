@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kasey Walsh — The Journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sage:    #7d9e8c;
+      --sage-d:  #4a6b58;
+      --sage-dl: #2e4d3c;
+      --moss:    #3d5e4a;
+      --linen:   #f0ebe2;
+      --warm:    #faf7f3;
+      --ink:     #1f2e24;
+      --mid:     #5e7566;
+      --line:    rgba(125,158,140,0.2);
+      --gold:    #b8945a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--warm);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250,247,243,0.95);
+      backdrop-filter: blur(12px);
+      padding: 1rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage-d);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .nav-back:hover { opacity: 0.6; }
+    .nav-back svg { width: 14px; height: 14px; }
+
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink);
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+    .nav-right span {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .nav-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sage);
+    }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      padding-top: 70px;
+      min-height: 100vh;
+      background: var(--sage-dl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://picsum.photos/seed/journeykasey/1400/900') center/cover no-repeat;
+      opacity: 0.1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, rgba(31,46,36,0.8) 100%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .hero-year-range {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(125,158,140,0.8);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6.5vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.0;
+      color: var(--linen);
+      letter-spacing: -0.01em;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(125,158,140,0.9);
+    }
+
+    .hero-deck {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(240,235,226,0.65);
+      line-height: 1.7;
+      margin-top: 2rem;
+    }
+
+    .hero-scroll {
+      margin-top: 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .hero-scroll span {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(125,158,140,0.6);
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, rgba(125,158,140,0.6), transparent);
+    }
+
+    /* ── INTRO SPLIT ─────────────────────────────────────── */
+    .intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+    .intro-img {
+      height: 70vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .intro-content {
+      padding: 5rem 4rem;
+      background: var(--linen);
+    }
+
+    .intro-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .intro-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-top: 0.8rem;
+    }
+    .intro-title em { font-style: italic; color: var(--sage-d); }
+
+    .intro-text {
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--mid);
+      margin-top: 1.5rem;
+    }
+    .intro-text p + p { margin-top: 0.9rem; }
+    .intro-text strong { color: var(--ink); font-weight: 600; }
+
+    /* ── TIMELINE ─────────────────────────────────────────── */
+    .timeline-section {
+      padding: 7rem 5rem;
+      background: var(--warm);
+    }
+
+    .timeline-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+    .timeline-header .label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+    .timeline-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 400;
+      color: var(--ink);
+      margin-top: 0.6rem;
+    }
+    .timeline-header h2 em { font-style: italic; color: var(--sage-d); }
+
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Central line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      transform: translateX(-50%);
+      width: 1px;
+      background: var(--line);
+    }
+
+    .timeline-entry {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      margin-bottom: 4rem;
+      align-items: start;
+    }
+
+    .timeline-entry:last-child { margin-bottom: 0; }
+
+    .entry-content {
+      padding: 2rem 2.5rem;
+      background: var(--linen);
+      border-radius: 6px;
+      position: relative;
+      transition: transform 0.3s;
+    }
+    .entry-content:hover { transform: scale(1.02); }
+
+    .entry-content.right {
+      grid-column: 3;
+    }
+
+    .entry-content.left {
+      grid-column: 1;
+      text-align: right;
+    }
+
+    .entry-content.left::after,
+    .entry-content.right::before {
+      content: '';
+      position: absolute;
+      top: 1.8rem;
+      width: 0; height: 0;
+      border-style: solid;
+    }
+
+    .entry-content.left::after {
+      right: -8px;
+      border-width: 8px 0 8px 8px;
+      border-color: transparent transparent transparent var(--linen);
+    }
+
+    .entry-content.right::before {
+      left: -8px;
+      border-width: 8px 8px 8px 0;
+      border-color: transparent var(--linen) transparent transparent;
+    }
+
+    .entry-dot {
+      grid-column: 2;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 2rem;
+    }
+
+    .dot-circle {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--sage);
+      border: 3px solid var(--warm);
+      box-shadow: 0 0 0 1px var(--line);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+    }
+    .dot-circle.gold { background: var(--gold); }
+
+    /* Spacer entries for alignment */
+    .entry-spacer { grid-column: 1; }
+    .entry-spacer.right-side { grid-column: 3; }
+
+    .entry-year {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+    .entry-content.left .entry-year { color: var(--sage-d); }
+    .entry-content.right .entry-year { color: var(--sage); }
+    .entry-content.gold-accent .entry-year { color: var(--gold); }
+
+    .entry-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--ink);
+      margin-top: 0.4rem;
+    }
+
+    .entry-body {
+      font-size: 0.82rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--mid);
+      margin-top: 0.6rem;
+    }
+
+    .entry-tag {
+      display: inline-block;
+      margin-top: 0.8rem;
+      padding: 0.2rem 0.6rem;
+      background: rgba(125,158,140,0.12);
+      color: var(--sage-d);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+    .entry-tag.amber { background: rgba(184,148,90,0.12); color: var(--gold); }
+
+    /* ── CLOSING QUOTE ───────────────────────────────────── */
+    .closing {
+      padding: 7rem 5rem;
+      background: var(--moss);
+      text-align: center;
+    }
+
+    .closing-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(125,158,140,0.7);
+    }
+
+    .closing-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--linen);
+      max-width: 750px;
+      margin: 1.5rem auto 0;
+    }
+
+    .closing-attr {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(240,235,226,0.35);
+      margin-top: 2rem;
+    }
+
+    .closing-sub {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(240,235,226,0.5);
+      max-width: 440px;
+      margin: 1.5rem auto 0;
+      line-height: 1.8;
+    }
+
+    /* ── CONTACT ─────────────────────────────────────────── */
+    .contact {
+      padding: 6rem 5rem;
+      background: var(--linen);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .contact-left .label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .contact-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--ink);
+      margin-top: 0.8rem;
+      line-height: 1.2;
+    }
+    .contact-left h2 em { font-style: italic; color: var(--sage-d); }
+
+    .contact-left p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.8;
+      margin-top: 1rem;
+    }
+
+    .contact-left a {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.9rem 2.2rem;
+      background: var(--sage-d);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .contact-left a:hover { background: var(--moss); }
+
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .contact-item:last-child { border-bottom: none; }
+
+    .contact-key {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      min-width: 90px;
+    }
+
+    .contact-val {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--ink);
+    }
+    .contact-val a { color: var(--sage-d); text-decoration: none; }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      padding: 2rem 5rem;
+      background: var(--sage-dl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(240,235,226,0.45);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(240,235,226,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(125,158,140,0.8); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .intro { grid-template-columns: 1fr; }
+      .intro-img { height: 55vw; }
+      .intro-content { padding: 3rem 1.5rem; }
+      .timeline-section { padding: 4rem 1.5rem; }
+      .timeline::before { left: 24px; }
+      .timeline-entry {
+        grid-template-columns: 48px 1fr;
+        margin-bottom: 2.5rem;
+      }
+      .entry-spacer, .entry-spacer.right-side { display: none; }
+      .entry-dot { grid-column: 1; grid-row: 1; }
+      .entry-content.left,
+      .entry-content.right {
+        grid-column: 2;
+        text-align: left;
+      }
+      .entry-content.left::after { display: none; }
+      .entry-content.right::before { display: none; }
+      .closing, .contact { padding: 4rem 1.5rem; }
+      .contact { grid-template-columns: 1fr; gap: 2.5rem; }
+      footer { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    All Templates
+  </a>
+  <span class="nav-name">Kasey Walsh</span>
+  <div class="nav-right">
+    <div class="nav-dot"></div>
+    <span>The Journey</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <p class="hero-year-range">2002 — 2025 and beyond</p>
+    <h1 class="hero-title">
+      Every<br><em>Chapter</em><br>Matters
+    </h1>
+    <p class="hero-deck">
+      A life of service, love, science, grief, and relentless hope — told in the order it happened.
+    </p>
+    <div class="hero-scroll">
+      <span>Scroll to begin</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="intro-img">
+    <img src="https://picsum.photos/seed/kaseyjourney/600/700" alt="Kasey Walsh" />
+  </div>
+  <div class="intro-content">
+    <p class="intro-label">About You</p>
+    <h2 class="intro-title">
+      A communicator who became<br>a <em>catalyst</em>.
+    </h2>
+    <div class="intro-text">
+      <p>You grew up in a world of words — studying Communication and Media Studies at Assumption University, learning how to tell stories that move people.</p>
+      <p>You didn't know yet that the story you'd need to tell most urgently would be your own. Or that it would require you to learn molecular biology, build a global nonprofit, collaborate with researchers at four of the world's most prestigious institutions, and ultimately found a company.</p>
+      <p>What follows is your journey — not as a resume, but as a life lived fully in service of <strong>the people who needed you most</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section" id="journey">
+  <div class="timeline-header">
+    <p class="label">Your Story</p>
+    <h2>The Road to Here<br><em>and beyond</em></h2>
+  </div>
+
+  <div class="timeline">
+
+    <!-- 2002 -->
+    <div class="timeline-entry">
+      <div class="entry-content left">
+        <p class="entry-year">2002 – 2006</p>
+        <h3 class="entry-title">Healthcare Service Coordinator, Muscular Dystrophy Association</h3>
+        <p class="entry-body">In-person patient liaison at Boston Children's Hospital, Mass General, and Lahey Clinic. Supported over 600 individuals with neuromuscular diseases. Organized parent and patient support groups. Attended summer camp for 80+ children. Your calling was already clear.</p>
+        <span class="entry-tag">Career Begins</span>
+      </div>
+      <div class="entry-dot"><div class="dot-circle"></div></div>
+      <div class="entry-spacer entry-right-side"></div>
+    </div>
+
+    <!-- 2006 -->
+    <div class="timeline-entry">
+      <div class="entry-spacer"></div>
+      <div class="entry-dot"><div class="dot-circle"></div></div>
+      <div class="entry-content right">
+        <p class="entry-year">2006 – 2007</p>
+        <h3 class="entry-title">Speaker Coordinator, Pulvermedia (VON Conferences)</h3>
+        <p class="entry-body">Curated high-impact speaker lineups for Jeff Pulver's groundbreaking Voice on the Net conferences — working during a period of intense technological disruption in IP communications. An early lesson in how conferences build ecosystems and catalyze movements.</p>
+        <span class="entry-tag">Voice of Innovation</span>
+      </div>
+    </div>
+
+    <!-- 2007 -->
+    <div class="timeline-entry">
+      <div class="entry-content left">
+        <p class="entry-year">2007 – 2008</p>
+        <h3 class="entry-title">Education Coordinator, Straumann USA</h3>
+        <p class="entry-body">Coordinated continuing education courses for dental professionals in implant and regenerative dentistry. Managed speakers, logistics, and cross-functional collaboration. Learned how structured learning experiences drive adoption, confidence, and clinical success.</p>
+        <span class="entry-tag">Education & Events</span>
+      </div>
+      <div class="entry-dot"><div class="dot-circle"></div></div>
+      <div class="entry-spacer"></div>
+    </div>
+
+    <!-- The Diagnosis -->
+    <div class="timeline-entry">
+      <div class="entry-spacer"></div>
+      <div class="entry-dot"><div class="dot-circle gold"></div></div>
+      <div class="entry-content right gold-accent">
+        <p class="entry-year">Circa 2015–2016</p>
+        <h3 class="entry-title">The Diagnosis That Changed Everything</h3>
+        <p class="entry-body">Robbie — your daughter, "super sweet, super sassy" — is diagnosed with AP-4-HSP (SPG47), a rare neurodegenerative disorder affecting fewer than 250 families globally. There is no treatment. Barely any research. No roadmap. You become the scientist, connector, and catalyst the community needs.</p>
+        <span class="entry-tag amber">Life Turning Point</span>
+      </div>
+    </div>
+
+    <!-- 2016 Cure AP-4 -->
+    <div class="timeline-entry">
+      <div class="entry-content left">
+        <p class="entry-year">2016</p>
+        <h3 class="entry-title">Co-Founded Cure AP-4, Inc.</h3>
+        <p class="entry-body">A pledge of hope between two families becomes a globally recognized nonprofit. Cure AP-4 launches to accelerate research and improve quality of life for children with AP-4-HSP across 4 subtypes: SPG47, SPG50, SPG51, and SPG52.</p>
+        <span class="entry-tag">Nonprofit Founded</span>
+      </div>
+      <div class="entry-dot"><div class="dot-circle"></div></div>
+      <div class="entry-spacer"></div>
+    </div>
+
+    <!-- Research Years -->
+    <div class="timeline-entry">
+      <div class="entry-spacer"></div>
+      <div class="entry-dot"><div class="dot-circle"></div></div>
+      <div class="entry-content right">
+        <p class="entry-year">2016 – 2025</p>
+        <h3 class="entry-title">9 Years of Scientific Collaboration</h3>
+        <p class="entry-body">Boston Children's Hospital. The Broad Institute. Sheffield University. Cambridge University. Unravel Biosciences. Pleozyme Inc. You build research partnerships across continents — contributing to biomarker discoveries, disease reclassification, and the prediction of 3 FDA-approved medications for AP-4-HSP off-label use.</p>
+        <span class="entry-tag">Science & Partnership</span>
+      </div>
+    </div>
+
+    <!-- Playground -->
+    <div class="timeline-entry">
+      <div class="entry-content left">
+        <p class="entry-year">c. 2022</p>
+        <h3 class="entry-title">Newburyport Inclusive Playground</h3>
+        <p class="entry-body">Co-founded Newburyport's first playground designed for children of all abilities. The grassroots effort doesn't just build a playground — it triggers a city-wide policy commitment that every future park project will prioritize inclusion.</p>
+        <span class="entry-tag">Community Impact</span>
+      </div>
+      <div class="entry-dot"><div class="dot-circle"></div></div>
+      <div class="entry-spacer"></div>
+    </div>
+
+    <!-- Award -->
+    <div class="timeline-entry">
+      <div class="entry-spacer"></div>
+      <div class="entry-dot"><div class="dot-circle gold"></div></div>
+      <div class="entry-content right gold-accent">
+        <p class="entry-year">April 2024</p>
+        <h3 class="entry-title">Lindamae Lucas Award for Excellence</h3>
+        <p class="entry-body">The Commonwealth of Massachusetts honors Kasey for embodying compassion, resilience, advocacy, and humor in the face of life's challenges — particularly in special needs parenting and mental health support.</p>
+        <span class="entry-tag amber">State Recognition</span>
+      </div>
+    </div>
+
+    <!-- Winsights -->
+    <div class="timeline-entry">
+      <div class="entry-content left">
+        <p class="entry-year">March 2025</p>
+        <h3 class="entry-title">Founder & CEO, Winsights.life</h3>
+        <p class="entry-body">You launch your most ambitious chapter: a mission-driven, AI-powered venture philanthropy to transform lived experience into regulatory-grade real-world evidence. Winsights.life is the bridge between patients, caregivers, clinicians, and researchers that you spent a decade wishing existed.</p>
+        <span class="entry-tag">New Chapter Begins</span>
+      </div>
+      <div class="entry-dot"><div class="dot-circle gold"></div></div>
+      <div class="entry-spacer"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CLOSING QUOTE -->
+<section class="closing">
+  <p class="closing-label">In Her Own Words</p>
+  <blockquote class="closing-quote">
+    "I've been a mama. A wife. A daughter. A friend. I've been happy. Devastated. Joyful. Depressed. Exhilarated. Lost. Found. Lonely. Loved. Brave. Broken. Studious. Furious. Hopeful. Hell-bent."
+  </blockquote>
+  <p class="closing-attr">— Kasey Walsh</p>
+  <p class="closing-sub">And who you're meant to be? Well that, my friend, is to be continued.</p>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-left">
+    <p class="label">Reach Kasey</p>
+    <h2>The story isn't<br><em>finished yet.</em></h2>
+    <p>You'd love to hear from patient families, researchers, partners, journalists, and anyone whose story intersects with yours. Every connection is a new chapter.</p>
+    <a href="mailto:hello@kaseywalsh.com">Get in Touch</a>
+  </div>
+  <div class="contact-right">
+    <div class="contact-item">
+      <span class="contact-key">Email</span>
+      <span class="contact-val"><a href="mailto:hello@kaseywalsh.com">hello@kaseywalsh.com</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-key">Website</span>
+      <span class="contact-val"><a href="https://winsights.life" target="_blank">winsights.life</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-key">Location</span>
+      <span class="contact-val">Greater Boston, Massachusetts</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-key">LinkedIn</span>
+      <span class="contact-val"><a href="https://linkedin.com/in/kasey-edwards-7899b63" target="_blank">Kasey Walsh Edwards</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-key">For Press</span>
+      <span class="contact-val">Speaking, interviews & media inquiries welcome</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">Kasey Walsh · kaseywalsh.com</span>
+  <div class="footer-links">
+    <a href="https://winsights.life" target="_blank">Winsights.life</a>
+    <a href="https://linkedin.com/in/kasey-edwards-7899b63" target="_blank">LinkedIn</a>
+    <a href="index.html">← All Templates</a>
+  </div>
+</footer>
+
+</body>
+</html>
